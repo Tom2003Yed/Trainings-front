@@ -11,7 +11,7 @@ function Register() {
     const [isAdmin, setIsAdmin] = useState(false);
 
     const handleRegister = () => {
-        const normalizedEmail = email.trim().toLowerCase()
+        const normalizedEmail = email.trim().toLowerCase();
 
         if (!name || !normalizedEmail || !password) {
             alert('Please complete all fields');
@@ -24,7 +24,14 @@ function Register() {
             return;
         }
 
-        const newUser = { name, email: normalizedEmail, password, trainings: [], admin: isAdmin };
+        const newUser = {
+            name,
+            email: normalizedEmail,
+            password,
+            trainings: [],
+            admin: isAdmin,
+            master: false
+        };
 
         fetch('http://localhost:3000/users', {
             method: 'POST',

@@ -7,16 +7,6 @@ function MyTraining() {
     const { users, trainings, setUsers, loggedInUser, setLoggedInUser } = useContext(AppContext);
 
     let filteredTrainings;
-    // useEffect(() => {
-    //     if (!loggedInUser) {
-    //         navigate('/');
-    //         return;
-    //     }
-    // }, [loggedInUser, navigate]);
-
-    // if (!loggedInUser) {
-    //     return null;
-    // }
 
     // DELETE USER
     const handleDeleteUser = (id) => {
@@ -95,12 +85,21 @@ function MyTraining() {
             </div>
 
             {loggedInUser?.admin && (
-                <button
-                    onClick={() => navigate('/ManageTrainings')}
-                    className="bg-gradient-to-r from-cyan-400 via-sky-500 to-blue-600 hover:from-cyan-500 hover:via-sky-600 hover:to-blue-700 text-white font-extrabold py-2.5 px-5 rounded-xl shadow-[0_0_15px_rgba(14,165,233,0.5)] hover:shadow-[0_0_25px_rgba(14,165,233,0.8)] ring-2 ring-sky-300/70 animate-pulse-slow transform hover:scale-110 active:scale-95 transition-all duration-300 ease-in-out mb-4 tracking-wide uppercase"
-                >
-                    Manage Trainings
-                </button>
+                <div>
+                    <button
+                        onClick={() => navigate('/ManageTrainings')}
+                        className="bg-gradient-to-r from-cyan-400 via-sky-500 to-blue-600 hover:from-cyan-500 hover:via-sky-600 hover:to-blue-700 text-white font-extrabold py-2.5 px-5 rounded-xl shadow-[0_0_15px_rgba(14,165,233,0.5)] hover:shadow-[0_0_25px_rgba(14,165,233,0.8)] ring-2 ring-sky-300/70 animate-pulse-slow transform hover:scale-110 active:scale-95 transition-all duration-300 ease-in-out mb-4 tracking-wide uppercase"
+                    >
+                        Manage Trainings
+                    </button>
+                    <br />
+                    <button
+                        onClick={() => navigate('/ManageUsers')}
+                        className="bg-gradient-to-r from-cyan-400 via-sky-500 to-blue-600 hover:from-cyan-500 hover:via-sky-600 hover:to-blue-700 text-white font-extrabold py-2.5 px-5 rounded-xl shadow-[0_0_15px_rgba(14,165,233,0.5)] hover:shadow-[0_0_25px_rgba(14,165,233,0.8)] ring-2 ring-sky-300/70 animate-pulse-slow transform hover:scale-110 active:scale-95 transition-all duration-300 ease-in-out mb-4 tracking-wide uppercase"
+                    >
+                        Manage Users
+                    </button>
+                </div>
             )}
 
             {(filteredTrainings = loggedInUser.trainings?.filter(t => trainings.find(dbT => dbT._id === t._id))) && filteredTrainings.length > 0 ? (

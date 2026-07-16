@@ -6,6 +6,7 @@ import Register from './Register'
 import TrainingRegistrationPage from './TrainingRegistrationPage'
 import MyTraining from './MyTraining'
 import ManageTrainings from './ManageTrainings'
+import ManageUsers from './ManageUsers'
 
 function App() {
   const [users, setUsers] = useState([]);
@@ -42,6 +43,7 @@ function App() {
           <Route path="/MyTraining" element={<MyTraining />} />
           <Route path="/TrainingRegistrationPage" element={<TrainingRegistrationPage />} />
           <Route path="/ManageTrainings" element={<ManageTrainings />} />
+          <Route path="/ManageUsers" element={<ManageUsers />} />
         </Routes>
       </div>
     </AppContext.Provider >

@@ -55,9 +55,10 @@ function TrainingRegistrationPage() {
         fetch(`http://localhost:3000/trainings/${id}/delete`, {
             method: 'DELETE'
         })
-            .then(res => {
+            .then(res => res.json())
+            .then(data => {
                 setTrainings(prev => prev.filter(training => training._id !== id))
-                alert(res.message);
+                alert(data.message);
             })
             .catch(err => console.log(err));
     }
