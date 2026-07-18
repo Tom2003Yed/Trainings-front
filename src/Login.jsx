@@ -17,7 +17,11 @@ function Login() {
             return;
         }
         setLoggedInUser(account);
-        alert(`Welcome back, ${account.name}`);
+        if (account.admin) {
+            alert(`Welcome back, ${account.name} the manager`);
+        } else {
+            alert(`Welcome back, ${account.name}`);
+        }
         navigate('/MyTraining');
     }
 
