@@ -102,7 +102,7 @@ function MyTraining() {
                 </div>
             )}
 
-            {(filteredTrainings = loggedInUser.trainings?.filter(t => trainings.find(dbT => dbT._id === t._id))) && filteredTrainings.length > 0 ? (
+            {(filteredTrainings = loggedInUser.trainings?.filter(userT => trainings.find(dbT => dbT._id === userT._id))) && filteredTrainings.length > 0 ? (
                 filteredTrainings.map(training => (
                     <div key={training._id} className="bg-slate-900/70 border border-slate-700 rounded-2xl p-5 mb-4">
                         <h2 className="text-xl font-bold text-white mb-1">{training.title}</h2>
