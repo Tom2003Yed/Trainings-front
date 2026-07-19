@@ -36,8 +36,7 @@ function ManageTrainings() {
 
         const isMasterEmpty = master === 'disabled' || master === ''; // if one of them is true so --- const isMasterEmpty = true
 
-        if (title == '' || isMasterEmpty == '' || date == '' || time == '') {
-            // alert('one of the inputs or more are empty');
+        if (title == '' || isMasterEmpty || date == '' || time == '') {
             setErrors({
                 title: title === '',
                 master: isMasterEmpty,
