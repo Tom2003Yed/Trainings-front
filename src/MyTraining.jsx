@@ -57,6 +57,15 @@ function MyTraining() {
                         <p className="text-slate-400 text-sm">{loggedInUser.email}</p>
                     </div>
                     <button
+                        onClick={() => {
+                            navigate('/')
+                            setLoggedInUser(null);
+                        }}
+                        className="text-sm font-medium text-cyan-400 hover:text-cyan-300 transition-colors duration-200 cursor-pointer bg-transparent border-none p-0 outline-none"
+                    >
+                        Sign Out
+                    </button>
+                    <button
                         onClick={() => handleDeleteUser(loggedInUser._id)}
                         className="px-4 py-2 bg-red-600 rounded-xl text-white hover:bg-red-500 transition-colors"
                     >
@@ -64,17 +73,12 @@ function MyTraining() {
                     </button>
                 </div>
             </div>
-            <button
-                onClick={() => {
-                    navigate('/')
-                    setLoggedInUser(null);
-                }}
-                className="text-sm font-medium text-cyan-400 hover:text-cyan-300 transition-colors duration-200 cursor-pointer bg-transparent border-none p-0 outline-none"
-            >
-                Sign Out
-            </button>
             <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-6">
                 <h1 className="text-3xl font-bold">My Trainings</h1>
+
+                {loggedInUser?.master && (
+                    <div>here i stopped!</div> // here i stopped!
+                )}
 
                 <button
                     className="bg-purple-500 hover:bg-purple-600 text-white font-bold py-2 px-4 rounded"
