@@ -77,7 +77,7 @@ function MyTraining() {
                 <h1 className="text-3xl font-bold">My Trainings</h1>
 
                 {loggedInUser?.master && (
-                    <div>here i stopped!</div> // here i stopped!
+                    < div > here i stopped!</div> // here i stopped!
                 )}
 
                 <button
@@ -88,40 +88,43 @@ function MyTraining() {
                 </button>
             </div>
 
-            {loggedInUser?.admin && (
-                <div>
-                    <button
-                        onClick={() => navigate('/ManageTrainings')}
-                        className="bg-gradient-to-r from-cyan-400 via-sky-500 to-blue-600 hover:from-cyan-500 hover:via-sky-600 hover:to-blue-700 text-white font-extrabold py-2.5 px-5 rounded-xl shadow-[0_0_15px_rgba(14,165,233,0.5)] hover:shadow-[0_0_25px_rgba(14,165,233,0.8)] ring-2 ring-sky-300/70 animate-pulse-slow transform hover:scale-110 active:scale-95 transition-all duration-300 ease-in-out mb-4 tracking-wide uppercase"
-                    >
-                        Manage Trainings
-                    </button>
-                    <br />
-                    <button
-                        onClick={() => navigate('/ManageUsers')}
-                        className="bg-gradient-to-r from-cyan-400 via-sky-500 to-blue-600 hover:from-cyan-500 hover:via-sky-600 hover:to-blue-700 text-white font-extrabold py-2.5 px-5 rounded-xl shadow-[0_0_15px_rgba(14,165,233,0.5)] hover:shadow-[0_0_25px_rgba(14,165,233,0.8)] ring-2 ring-sky-300/70 animate-pulse-slow transform hover:scale-110 active:scale-95 transition-all duration-300 ease-in-out mb-4 tracking-wide uppercase"
-                    >
-                        Manage Users
-                    </button>
-                </div>
-            )}
-
-            {(filteredTrainings = loggedInUser.trainings?.filter(userT => trainings.find(dbT => dbT._id === userT._id))) && filteredTrainings.length > 0 ? (
-                filteredTrainings.map(training => (
-                    <div key={training._id} className="bg-slate-900/70 border border-slate-700 rounded-2xl p-5 mb-4">
-                        <h2 className="text-xl font-bold text-white mb-1">{training.title}</h2>
-                        <p className="text-slate-400 mb-1">{training.master}</p>
-                        <p className="text-slate-300">📅 {training.date} · ⏰ {training.time}</p>
+            {
+                loggedInUser?.admin && (
+                    <div>
                         <button
-                            className="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded"
-                            onClick={() => handleCancelTraining(loggedInUser._id, training._id)}>
-                            Cancel Booking
+                            onClick={() => navigate('/ManageTrainings')}
+                            className="bg-gradient-to-r from-cyan-400 via-sky-500 to-blue-600 hover:from-cyan-500 hover:via-sky-600 hover:to-blue-700 text-white font-extrabold py-2.5 px-5 rounded-xl shadow-[0_0_15px_rgba(14,165,233,0.5)] hover:shadow-[0_0_25px_rgba(14,165,233,0.8)] ring-2 ring-sky-300/70 animate-pulse-slow transform hover:scale-110 active:scale-95 transition-all duration-300 ease-in-out mb-4 tracking-wide uppercase"
+                        >
+                            Manage Trainings
+                        </button>
+                        <br />
+                        <button
+                            onClick={() => navigate('/ManageUsers')}
+                            className="bg-gradient-to-r from-cyan-400 via-sky-500 to-blue-600 hover:from-cyan-500 hover:via-sky-600 hover:to-blue-700 text-white font-extrabold py-2.5 px-5 rounded-xl shadow-[0_0_15px_rgba(14,165,233,0.5)] hover:shadow-[0_0_25px_rgba(14,165,233,0.8)] ring-2 ring-sky-300/70 animate-pulse-slow transform hover:scale-110 active:scale-95 transition-all duration-300 ease-in-out mb-4 tracking-wide uppercase"
+                        >
+                            Manage Users
                         </button>
                     </div>
-                ))
-            ) : (
-                <p className="text-slate-400">No trainings booked yet. Go register for a training.</p>
-            )
+                )
+            }
+
+            {
+                (filteredTrainings = loggedInUser.trainings?.filter(userT => trainings.find(dbT => dbT._id === userT._id))) && filteredTrainings.length > 0 ? (
+                    filteredTrainings.map(training => (
+                        <div key={training._id} className="bg-slate-900/70 border border-slate-700 rounded-2xl p-5 mb-4">
+                            <h2 className="text-xl font-bold text-white mb-1">{training.title}</h2>
+                            <p className="text-slate-400 mb-1">{users.find(u => u._id === training.master)?.name || training.master}</p> {/* עובר על מערך המשתמשים שזה מערך של אובייקטים וכשהוא מוצא את האחד עם התז המתאים הוא מחזיר לי אובייקט ועליו אני לוקח את השם של המשתמש */}
+                            <p className="text-slate-300">📅 {training.date} · ⏰ {training.time}</p>
+                            <button
+                                className="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded"
+                                onClick={() => handleCancelTraining(loggedInUser._id, training._id)}>
+                                Cancel Booking
+                            </button>
+                        </div>
+                    ))
+                ) : (
+                    <p className="text-slate-400">No trainings booked yet. Go register for a training.</p>
+                )
             }
         </div >
     )

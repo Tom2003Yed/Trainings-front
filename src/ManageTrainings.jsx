@@ -104,7 +104,7 @@ function ManageTrainings() {
                     {masters.map(user => (
                         <option
                             key={user._id}
-                            value={user.name}
+                            value={user._id}
                             className="bg-slate-800 text-white"
                         >
                             {user.name}

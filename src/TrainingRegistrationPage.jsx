@@ -89,7 +89,7 @@ function TrainingRegistrationPage() {
                                 Delete Training
                             </button>
                         )}
-                        <p className="text-cyan-400 font-medium text-sm mb-2">{training.master}</p>
+                        <p className="text-cyan-400 font-medium text-sm mb-2">{users.find(u => u._id === training.master)?.name || training.master}</p>
                         <div className="flex gap-4 text-slate-400 text-sm">
                             <span>📅 {training.date}</span>
                             <span>⏰ {training.time}</span>
