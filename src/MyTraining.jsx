@@ -77,7 +77,28 @@ function MyTraining() {
                 <h1 className="text-3xl font-bold">My Trainings</h1>
 
                 {loggedInUser?.master && (
-                    < div > here i stopped!</div> // here i stopped!
+                    <div> {/* הערה לעצמי יש פה דיב כי חייב אלמנט אחרי סוגריים () כאלה */}
+                        <h2>Trainings where you are the master</h2>
+                        {trainings.filter(training => training.master === loggedInUser._id).map(training => (
+                            <div>
+                                <div
+                                    key={training._id}
+                                    className="bg-slate-900/70 border border-slate-700 rounded-2xl p-5 mb-4"
+                                >
+                                    <div>
+                                        <h2
+                                            className="text-xl font-bold text-white mb-1"
+                                        >{training.title}</h2>
+                                        {users.filter(user => user.trainings?.filter(training => training.master === loggedInUser._id).length > 0).map(user => (
+                                            <p>{user.name}</p>
+                                        ))}
+                                        <p className="text-slate-300">📅 {training.date} · ⏰ {training.time}</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                        ))}
+                    </div>
                 )}
 
                 <button

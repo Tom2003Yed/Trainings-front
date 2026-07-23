@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 
 function TrainingRegistrationPage() {
     const navigate = useNavigate();
-    const { users, trainings, setTrainings, loggedInUser, setLoggedInUser } = useContext(AppContext);
+    const { users, setUsers, trainings, setTrainings, loggedInUser, setLoggedInUser } = useContext(AppContext);
 
     // BOOK
     const handleBooking = (id) => {
@@ -45,6 +45,9 @@ function TrainingRegistrationPage() {
                     .then(res => res.json())
                     .then(updatedDataFromServer => {
                         setLoggedInUser(updatedDataFromServer);
+
+                        setUsers(prev => prev.map(u => u._id === updatedDataFromServer._id ? updatedDataFromServer : u));
+
                         alert(data.message);
                     })
             })
