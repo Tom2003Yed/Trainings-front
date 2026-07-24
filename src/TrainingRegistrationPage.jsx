@@ -98,11 +98,17 @@ function TrainingRegistrationPage() {
                             <span>⏰ {training.time}</span>
                         </div>
                     </div>
-                    <button
-                        onClick={() => handleBooking(training._id)}
-                        className="px-4 py-2 bg-cyan-600 rounded-xl text-white hover:bg-cyan-500 transition-colors text-sm font-medium">
-                        Book
-                    </button>
+                    {training.master === loggedInUser._id ? (
+                        <div>
+                            <p>You are the master in this training!</p>
+                        </div>
+                    ) : (
+                        <button
+                            onClick={() => handleBooking(training._id)}
+                            className="px-4 py-2 bg-cyan-600 rounded-xl text-white hover:bg-cyan-500 transition-colors text-sm font-medium">
+                            Book
+                        </button>
+                    )}
                 </div>
             ))}
         </div >
