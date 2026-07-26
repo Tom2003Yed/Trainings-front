@@ -41,6 +41,12 @@ function MyTraining() {
     if (!loggedInUser) {
         return null;
     }
+
+    const activeTrainings = trainings.filter(training => {
+        const masterUser = users.find(u => u._id === training.master);
+        return masterUser && masterUser.master; // (masterUser.master === true)
+    });
+
     return (
         <div className="max-w-4xl w-full mx-auto p-6">
             {loggedInUser?.admin && (
@@ -50,6 +56,17 @@ function MyTraining() {
                     You are an admin!
                 </p>
             )}
+            {loggedInUser?.master && (
+                <p
+                    className="text-xl font-medium text-green-400 mb-4"
+                >
+                    You are a master!
+                </p>
+            )}
+            <p
+                className="text-xl font-medium text-green-400 mb-4"
+            >
+            </p>
             <div className="grid gap-4" >
                 <div key={loggedInUser._id} className="bg-slate-900/70 border border-slate-700 rounded-2xl p-5 flex items-center justify-between gap-4">
                     <div>
@@ -130,7 +147,7 @@ function MyTraining() {
             }
 
             {
-                (filteredTrainings = loggedInUser.trainings?.filter(userT => trainings.find(dbT => dbT._id === userT._id))) && filteredTrainings.length > 0 ? (
+                (filteredTrainings = loggedInUser.trainings?.filter(userT => activeTrainings.find(dbT => dbT._id === userT._id))) && filteredTrainings.length > 0 ? (
                     filteredTrainings.map(training => (
                         <div key={training._id} className="bg-slate-900/70 border border-slate-700 rounded-2xl p-5 mb-4">
                             <h2 className="text-xl font-bold text-white mb-1">{training.title}</h2>

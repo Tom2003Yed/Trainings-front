@@ -1,7 +1,6 @@
 import React, { useContext } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { AppContext } from './AppContext';
-import { useState } from 'react';
 
 function ManageUsers() {
     const navigate = useNavigate();

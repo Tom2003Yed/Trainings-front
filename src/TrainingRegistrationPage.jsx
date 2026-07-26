@@ -66,6 +66,11 @@ function TrainingRegistrationPage() {
             .catch(err => console.log(err));
     }
 
+    const activeTrainings = trainings.filter(training => {
+        const masterUser = users.find(user => user._id === training.master);
+        return masterUser && masterUser.master; // (masterUser.master === true)
+    })
+
     return (
         <div className="max-w-4xl w-full mx-auto p-6">
 
@@ -80,7 +85,7 @@ function TrainingRegistrationPage() {
 
 
 
-            {trainings.map(training => (
+            {activeTrainings.map(training => (
                 <div key={training._id} className="bg-slate-900/70 border border-slate-700 rounded-2xl p-5 flex flex-col md:flex-row md:items-center justify-between gap-4 mt-4">
                     <div>
                         <h2 className="text-xl font-bold text-white mb-1">{training.title}</h2>
@@ -111,7 +116,7 @@ function TrainingRegistrationPage() {
                     )}
                 </div>
             ))}
-        </div >
+        </div>
     )
 }
 
